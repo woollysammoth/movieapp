@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import { registerScreens } from './screens';
-
 import { iconsMap, iconsLoaded } from './utils/AppIcons';
 import configureStore from './store/configureStore';
 
@@ -33,11 +32,11 @@ class App extends Component {
 		Navigation.startTabBasedApp({
 			tabs: [
 				{
-					label: 'Movies',
-					screen: 'movieapp.Movies',
+					label: 'Home',
+					screen: 'app.Home',
 					icon: iconsMap['ios-film-outline'],
 					selectedIcon: iconsMap['ios-film'],
-					title: 'Movies',
+					title: 'Home',
 					navigatorStyle,
 					navigatorButtons: {
 						rightButtons: [
@@ -48,14 +47,6 @@ class App extends Component {
 							}
 						]
 					}
-				},
-				{
-					label: 'TV Shows',
-					screen: 'movieapp.Movies',
-					icon: iconsMap['ios-desktop-outline'],
-					selectedIcon: iconsMap['ios-desktop'],
-					title: 'Movies',
-					navigatorStyle
 				}
 			],
 			tabsStyle: {

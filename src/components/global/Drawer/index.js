@@ -8,7 +8,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 
-import styles from './styles/Drawer';
+import styles from './styles';
 
 class Drawer extends Component {
 	constructor(props) {

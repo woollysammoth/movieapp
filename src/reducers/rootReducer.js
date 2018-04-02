@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import movies from '../modules/movies/movies.reducer';
+import home from '../components/screens/home/reducer';
 
 const rootReducer = combineReducers({
-	movies
+	home
 });
 
 export default rootReducer;

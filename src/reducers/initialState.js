@@ -1,10 +1,6 @@
 export default {
-	movies: {
-		details: {},
-		genres: [],
-		list: [],
-		nowPlayingMovies: {},
-		popularMovies: {},
-		searchResults: {}
+	app: {},
+	home: {
+		posts: []
 	}
 };
