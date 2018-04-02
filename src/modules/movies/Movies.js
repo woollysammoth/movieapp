@@ -25,7 +25,8 @@ class Movies extends Component {
 
 		this.state = {
 			isLoading: true,
-			isRefreshing: false
+			isRefreshing: false,
+			list: []
 		};
 
 		this._viewMovie = this._viewMovie.bind(this);
@@ -38,7 +39,7 @@ class Movies extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.nowPlayingMovies && nextProps.popularMovies) {
+		if (nextProps.list) {
 			this.setState({ isLoading: false });
 		}
 	}
@@ -120,7 +121,7 @@ class Movies extends Component {
 	}
 
 	render() {
-		const { nowPlayingMovies, popularMovies } = this.props;
+		const { list } = this.props;
 		const iconPlay = <Icon name="md-play" size={21} color="#9F9F9F" style={{ paddingLeft: 3, width: 22 }} />;
 		const iconTop = <Icon name="md-trending-up" size={21} color="#9F9F9F" style={{ width: 22 }} />;
 		const iconUp = <Icon name="md-recording" size={21} color="#9F9F9F" style={{ width: 22 }} />;
@@ -140,15 +141,6 @@ class Movies extends Component {
 						progressBackgroundColor="white"
 					/>
 				}>
-				<Swiper
-					autoplay
-					autoplayTimeout={4}
-					showsPagination={false}
-					height={248}>
-					{nowPlayingMovies.results.map(info => (
-						<CardOne key={info.id} info={info} viewMovie={this._viewMovie} />
-					))}
-				</Swiper>
 				<View>
 					<View style={styles.listHeading}>
 						<Text style={styles.listHeadingLeft}>Popular</Text>
@@ -161,9 +153,13 @@ class Movies extends Component {
 						</TouchableOpacity>
 					</View>
 					<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-						{popularMovies.results.map(info => (
-							<CardTwo key={info.id} info={info} viewMovie={this._viewMovie} />
-						))}
+							<View style={styles.cardGenre}>
+								{
+									list.map(item => (
+										<Text key={item.id} style={styles.browseListItemText}>{item.title}</Text>
+									))
+								}
+							</View>
 					</ScrollView>
 					<View style={styles.browseList}>
 						<TouchableOpacity activeOpacity={0.7}>
@@ -203,15 +199,13 @@ class Movies extends Component {
 
 Movies.propTypes = {
 	actions: PropTypes.object.isRequired,
-	nowPlayingMovies: PropTypes.object.isRequired,
-	popularMovies: PropTypes.object.isRequired,
+	list: PropTypes.array.isRequired,
 	navigator: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
 	return {
-		nowPlayingMovies: state.movies.nowPlayingMovies,
-		popularMovies: state.movies.popularMovies
+		list: state.movies.list
 	};
 }
 

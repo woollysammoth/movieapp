@@ -7,19 +7,19 @@ export default function (state = initialState.movies, action) {
 		case types.RETRIEVE_POPULAR_MOVIES_SUCCESS:
 			return {
 				...state,
-				popularMovies: action.popularMovies
+				list: action.list
 			};
 
 		case types.RETRIEVE_NOWPLAYING_MOVIES_SUCCESS:
 			return {
 				...state,
-				nowPlayingMovies: action.nowPlayingMovies
+				list: action.list
 			};
 
 		case types.RETRIEVE_MOVIES_GENRES_SUCCESS:
 			return {
 				...state,
-				genres: action.moviesGenres
+				list: action.list
 			};
 
 		case types.RETRIEVE_MOVIES_LIST_SUCCESS:
@@ -31,13 +31,13 @@ export default function (state = initialState.movies, action) {
 		case types.RETRIEVE_MOVIE_DETAILS_SUCCESS:
 			return {
 				...state,
-				details: action.details
+				list: action.list
 			};
 
 		case types.RETRIEVE_MOVIES_SEARCH_RESULT_SUCCESS:
 			return {
 				...state,
-				searchResults: action.searchResults
+				list: action.list
 			};
 		default:
 			return state;

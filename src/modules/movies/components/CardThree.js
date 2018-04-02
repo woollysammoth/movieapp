@@ -31,7 +31,7 @@ class CardThree extends Component {
 							<Text
 								style={styles.cardTitle}
 								numberOfLines={3}>
-								{info.original_title}
+								{info.title}
 							</Text>
 							<View style={styles.cardGenre}>
 								<Text style={styles.cardGenreItem}>{info.release_date.substring(0, 4)}</Text>
@@ -44,7 +44,7 @@ class CardThree extends Component {
 								<Text style={styles.cardRunningHours} />
 							</View>
 							<Text style={styles.cardDescription} numberOfLines={3}>
-								{info.overview}
+								{info.body}
 							</Text>
 						</View>
 					</View>

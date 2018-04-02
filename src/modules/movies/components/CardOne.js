@@ -21,7 +21,7 @@ const CardOne = ({ info, viewMovie }) => (
 			<Image source={{ uri: `${TMDB_IMG_URL}/w185/${info.poster_path}` }} style={styles.cardImage} />
 			<View style={styles.cardDetails}>
 				<Text style={styles.cardTitle} numberOfLines={2}>
-					{info.original_title}
+					{info.title}
 				</Text>
 				<View style={styles.cardGenre}>
 					<Text style={styles.cardGenreItem}>Action</Text>
@@ -34,7 +34,7 @@ const CardOne = ({ info, viewMovie }) => (
 					<Text style={styles.cardRunningHours} />
 				</View>
 				<Text style={styles.cardDescription} numberOfLines={3}>
-					{info.overview}
+					{info.body}
 				</Text>
 				<TouchableOpacity activeOpacity={0.9} onPress={viewMovie.bind(this, info.id)}>
 					<View style={styles.viewButton}>

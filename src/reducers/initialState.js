@@ -2,7 +2,7 @@ export default {
 	movies: {
 		details: {},
 		genres: [],
-		list: {},
+		list: [],
 		nowPlayingMovies: {},
 		popularMovies: {},
 		searchResults: {}

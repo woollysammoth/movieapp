@@ -6,15 +6,15 @@ import { TMDB_URL, TMDB_API_KEY } from '../../constants/api';
 export function retrieveMoviesGenresSuccess(res) {
 	return {
 		type: types.RETRIEVE_MOVIES_GENRES_SUCCESS,
-		moviesGenres: res.data
+		list: res
 	};
 }
 
 export function retrieveMoviesGenres() {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`)
+		return axios.get(`${TMDB_URL}/posts`)
 		.then(res => {
-			dispatch(retrieveMoviesGenresSuccess(res));
+			dispatch(retrieveMoviesGenresSuccess(res.data));
 		})
 		.catch(error => {
 			console.log(error); //eslint-disable-line
@@ -26,15 +26,15 @@ export function retrieveMoviesGenres() {
 export function retrievePopularMoviesSuccess(res) {
 	return {
 		type: types.RETRIEVE_POPULAR_MOVIES_SUCCESS,
-		popularMovies: res.data
+		list: res
 	};
 }
 
 export function retrievePopularMovies(page) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/movie/popular?api_key=${TMDB_API_KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/posts?page=${page}`)
 		.then(res => {
-			dispatch(retrievePopularMoviesSuccess(res));
+			dispatch(retrievePopularMoviesSuccess(res.data));
 		})
 		.catch(error => {
 			console.log('Popular', error); //eslint-disable-line
@@ -46,15 +46,16 @@ export function retrievePopularMovies(page) {
 export function retrieveNowPlayingMoviesSuccess(res) {
 	return {
 		type: types.RETRIEVE_NOWPLAYING_MOVIES_SUCCESS,
-		nowPlayingMovies: res.data
+		list: res
 	};
 }
 
 export function retrieveNowPlayingMovies(page) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/movie/now_playing?api_key=${TMDB_API_KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/posts?page=${page}`)
 		.then(res => {
-			dispatch(retrieveNowPlayingMoviesSuccess(res));
+			console.log("got results", res);
+			dispatch(retrieveNowPlayingMoviesSuccess(res.data));
 		})
 		.catch(error => {
 			console.log('Now Playing', error); //eslint-disable-line
@@ -66,15 +67,15 @@ export function retrieveNowPlayingMovies(page) {
 export function retrieveMoviesListSuccess(res) {
 	return {
 		type: types.RETRIEVE_MOVIES_LIST_SUCCESS,
-		list: res.data
+		list: res
 	};
 }
 
 export function retrieveMoviesList(type, page) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/movie/${type}?api_key=${TMDB_API_KEY}&page=${page}`)
+		return axios.get(`${TMDB_URL}/posts?type=${type}&page=${page}`)
 		.then(res => {
-			dispatch(retrieveMoviesListSuccess(res));
+			dispatch(retrieveMoviesListSuccess(res.data));
 		})
 		.catch(error => {
 			console.log('Movies List', error); //eslint-disable-line
@@ -86,15 +87,15 @@ export function retrieveMoviesList(type, page) {
 export function retrieveMoviesSearchResultsSuccess(res) {
 	return {
 		type: types.RETRIEVE_MOVIES_SEARCH_RESULT_SUCCESS,
-		searchResults: res.data
+		list: res
 	};
 }
 
 export function retrieveMoviesSearchResults(query, page) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${query}&page=${page}`)
+		return axios.get(`${TMDB_URL}/posts?query=${query}&page=${page}`)
 		.then(res => {
-			dispatch(retrieveMoviesSearchResultsSuccess(res));
+			dispatch(retrieveMoviesSearchResultsSuccess(res.data));
 		})
 		.catch(error => {
 			console.log('Movies Search Results', error); //eslint-disable-line
@@ -106,15 +107,15 @@ export function retrieveMoviesSearchResults(query, page) {
 export function retrieveMovieDetailsSuccess(res) {
 	return {
 		type: types.RETRIEVE_MOVIE_DETAILS_SUCCESS,
-		details: res.data
+		list: res
 	};
 }
 
 export function retrieveMovieDetails(movieId) {
 	return function (dispatch) {
-		return axios.get(`${TMDB_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=casts,images,videos`)
+		return axios.get(`${TMDB_URL}/posts?append_to_response=casts,images,videos`)
 		.then(res => {
-			dispatch(retrieveMovieDetailsSuccess(res));
+			dispatch(retrieveMovieDetailsSuccess(res.data));
 		})
 		.catch(error => {
 			console.log('Movie Details', error); //eslint-disable-line
